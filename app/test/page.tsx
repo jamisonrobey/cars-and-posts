@@ -1,6 +1,5 @@
 import db from "@/lib/database";
-import { cars } from "@/schema/schema";
-
+import { cars } from "@/lib/schema";
 
 export default async function Test() {
     const data = await db.select().from(cars)
