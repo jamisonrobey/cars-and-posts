@@ -9,7 +9,7 @@ import {
 } from "drizzle-orm/mysql-core";
 
 export const cars = mysqlTable("cars", {
-  carId: int("car_id").primaryKey().autoincrement().notNull(),
+  id: int("car_id").primaryKey().autoincrement().notNull(),
   make: varchar("make", { length: 50 }).notNull(),
   model: varchar("model", { length: 50 }).notNull(),
   year: int("year").notNull(),
@@ -39,8 +39,8 @@ export const cars = mysqlTable("cars", {
 });
 
 export const posts = mysqlTable("posts", {
-  postId: int("post_id").primaryKey().autoincrement().notNull(),
-  carId: int("car_id").references(() => cars.carId),
+  id: int("post_id").primaryKey().autoincrement().notNull(),
+  carId: int("car_id").references(() => cars.id),
   title: varchar("title", { length: 50 }).notNull(),
   description: text("description").notNull(),
   uploadDate: date("upload_date").notNull(),
