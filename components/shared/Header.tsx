@@ -3,7 +3,7 @@ import { logoFont, sans } from "../fonts";
 
 export const Header = () => {
   return (
-    <div className="flex items-center justify-between p-2 sm:p-16 sm:justify-center">
+    <div className="flex items-center justify-between p-2 sm:p-16 z-10 sm:justify-center">
       <h1 className={`${logoFont.className} text-center text-accent text-3xl`}>
         Carmart.
       </h1>
