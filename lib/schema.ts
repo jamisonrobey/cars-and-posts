@@ -10,10 +10,9 @@ import {
 
 export const cars = mysqlTable("cars", {
   id: int("car_id").primaryKey().autoincrement().notNull(),
-  make: varchar("make", { length: 50 }).notNull(),
   model: varchar("model", { length: 50 }).notNull(),
+  make: varchar("make", { length: 50 }).notNull(),
   year: int("year").notNull(),
-  vin: varchar("vin", { length: 50 }).notNull(),
   bodyType: mysqlEnum("body_type", [
     "SUV",
     "Sedan",
@@ -43,6 +42,7 @@ export const posts = mysqlTable("posts", {
   carId: int("car_id").references(() => cars.id),
   title: varchar("title", { length: 50 }).notNull(),
   description: text("description").notNull(),
+  vin: varchar("vin", { length: 50 }).notNull(),
   uploadDate: date("upload_date").notNull(),
   sold: boolean("is_sold").default(false),
   views: int("views").default(0),
