@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         accent: "#e54666",
         text: "#212529",
-        grey: "#cfcfd1",
+        greyLight: "#cfcfd1",
       },
     },
   },
