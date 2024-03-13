@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 // next image component for easier styling - just adjust width in parent div
-interface CarImageProps {
+interface CustomImageProps {
   src: string;
   alt: string;
 }
 
-export const CarImage: React.FC<CarImageProps> = ({ src, alt }) => {
+export const CustomImage: React.FC<CustomImageProps> = ({ src, alt }) => {
   return (
     <Image
       alt={alt}
@@ -14,7 +14,7 @@ export const CarImage: React.FC<CarImageProps> = ({ src, alt }) => {
       height={0}
       sizes="100vw"
       src={src}
-      className="w-full h-auto"
+      className="w-full h-auto "
     />
   );
 };
