@@ -9,3 +9,8 @@ export const sans = Open_Sans({
   weight: ["400"],
   subsets: ["latin"],
 });
+
+export const boldSans = Open_Sans({
+  weight: ["600"],
+  subsets: ["latin"],
+});
