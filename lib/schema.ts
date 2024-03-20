@@ -6,6 +6,7 @@ import {
   mysqlEnum,
   text,
   date,
+  decimal,
 } from "drizzle-orm/mysql-core";
 
 export const cars = mysqlTable("cars", {
@@ -21,7 +22,6 @@ export const cars = mysqlTable("cars", {
     "Convertible",
     "Wagon",
     "Van",
-    "Ute",
   ]).notNull(),
   engineConfig: mysqlEnum("engine_config", [
     "I4",
@@ -31,8 +31,8 @@ export const cars = mysqlTable("cars", {
     "V10",
     "V12",
   ]).notNull(),
+  transmission: varchar("transmission", { length: 50 }).notNull(),
   colour: varchar("colour", { length: 50 }).notNull(),
-  imagePath: varchar("image_path", { length: 50 }).notNull(),
   trim: varchar("trim", { length: 50 }),
   interiorColour: varchar("interior_colour", { length: 50 }),
 });
@@ -45,5 +45,8 @@ export const posts = mysqlTable("posts", {
   vin: varchar("vin", { length: 50 }).notNull(),
   uploadDate: date("upload_date").notNull(),
   sold: boolean("is_sold").default(false),
+  imagePath: varchar("image_path", { length: 50 }).notNull(),
+  mileage: int("mileage").notNull(),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
   views: int("views").default(0),
 });
