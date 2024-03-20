@@ -3,12 +3,12 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
-import { sans } from "@/components/fonts";
+import { sans } from "@/lib/fonts";
 import * as Select from "@radix-ui/react-select";
-import { InterfaceSelectItem } from "@/types/interfaces";
+import { SelectItem } from "@/types/interfaces";
 
 interface SelectDropdownProps {
-  items: InterfaceSelectItem[];
+  items: SelectItem[];
   value: string;
   onValueChange: (value: string) => void;
   placeholder: string;

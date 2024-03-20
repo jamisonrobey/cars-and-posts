@@ -1,10 +1,10 @@
 import React from "react";
-import { InterfaceMakesAndModels } from "@/types/interfaces";
+import { MakesAndModels } from "@/types/interfaces";
 import { db } from "@/lib/database";
 import { eq } from "drizzle-orm";
 import { cars, posts } from "@/lib/schema";
 import { SelectParent } from "./select/SelectParent";
-import { sans, boldSans } from "../fonts";
+import { sans } from "@/lib/fonts";
 export const getModels = async () => {
   const makesAndModels = await db
     .select({
@@ -14,8 +14,8 @@ export const getModels = async () => {
     .from(posts)
     .innerJoin(cars, eq(cars.id, posts.carId));
 
-  const structuredMakesAndModels =
-    makesAndModels.reduce<InterfaceMakesAndModels>((acc, car) => {
+  const structuredMakesAndModels = makesAndModels.reduce<MakesAndModels>(
+    (acc, car) => {
       const { make, model } = car;
       const lowerCaseMake = make.toLowerCase().replace(/-/g, "_");
 
@@ -30,7 +30,9 @@ export const getModels = async () => {
       acc[lowerCaseMake].count++;
 
       return acc;
-    }, {});
+    },
+    {}
+  );
   return structuredMakesAndModels;
 };
 
@@ -42,11 +44,6 @@ export const Search = async () => {
     >
       <div className="flex items-center justify-around border-b-2 border-greyLight">
         <SelectParent makesAndModels={makesAndModels} />
-        <button
-          className={`${boldSans.className} rounded-xl mb-3 border-accent bg-accent hover:scale-105 text-white duration-75 border-4 w-1/12`}
-        >
-          Find
-        </button>
       </div>
       <div className="flex items-center justify-around"></div>
     </div>

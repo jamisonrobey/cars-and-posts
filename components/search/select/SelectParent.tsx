@@ -1,13 +1,11 @@
 "use client";
-import {
-  InterfaceMakesAndModels,
-  InterfaceSelectItem,
-} from "@/types/interfaces";
+import { MakesAndModels, SelectItem } from "@/types/interfaces";
 import { useState, useEffect } from "react";
 import { SelectDropdown } from "./SelectDropdown";
-
+import { boldSans } from "@/lib/fonts";
+import Link from "next/link";
 interface SelectParentProps {
-  makesAndModels: InterfaceMakesAndModels;
+  makesAndModels: MakesAndModels;
 }
 
 export const SelectParent: React.FC<SelectParentProps> = ({
@@ -16,20 +14,27 @@ export const SelectParent: React.FC<SelectParentProps> = ({
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
   const [models, setModels] = useState<string[]>([]);
+  const [href, setHref] = useState("");
 
   useEffect(() => {
     if (make === "" || make === "all") {
       setModels([]);
+      setHref("/search/all/");
     } else {
       const selectedMake = makesAndModels[make];
       if (selectedMake) {
         setModels(selectedMake.models);
+        if (model === "" || model === "all") {
+          setHref(`/search/make?make=${make}`);
+        } else {
+          setHref(`/search/makeModel?make=${make}&model=${model}`);
+        }
       } else {
         setModels([]);
+        setHref("/search/all/");
       }
     }
-    setModel(""); // Reset the selected model when make changes
-  }, [make, makesAndModels]);
+  }, [make, model, makesAndModels]);
 
   const handleMakeChange = (value: string) => {
     setMake(value);
@@ -39,7 +44,7 @@ export const SelectParent: React.FC<SelectParentProps> = ({
     setModel(value);
   };
 
-  const makeItems: InterfaceSelectItem[] = Object.entries(makesAndModels).map(
+  const makeItems: SelectItem[] = Object.entries(makesAndModels).map(
     ([make, { count }]) => ({
       value: make,
       label: `${
@@ -48,7 +53,7 @@ export const SelectParent: React.FC<SelectParentProps> = ({
     })
   );
 
-  const modelItems: InterfaceSelectItem[] = models.map((model) => ({
+  const modelItems: SelectItem[] = models.map((model) => ({
     value: model,
     label: model,
   }));
@@ -70,6 +75,12 @@ export const SelectParent: React.FC<SelectParentProps> = ({
         placeholder="Model..."
         disabled={models.length === 0}
       />
+
+      <button
+        className={`${boldSans.className} rounded-xl shadow-md border-accent bg-accent hover:scale-105 text-white duration-75 border-4 w-1/12`}
+      >
+        {model ? <Link href={href}>Find</Link> : <Link href={href}>Find</Link>}
+      </button>
     </>
   );
 };
