@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { logoFont, sans } from "../fonts";
+import { logoFont, sans } from "../../lib/fonts";
 
 export const Header = () => {
   return (
