@@ -15,17 +15,5 @@ export default async function MakeSearch({
     .innerJoin(cars, eq(cars.id, posts.carId))
     .where(and(eq(cars.make, make), eq(cars.model, model)));
 
-  return (
-    <CarGrid>
-      {results.map((carPostData) => {
-        const { posts: postData, cars: carData } = carPostData;
-
-        return (
-          <div className="m-4">
-            <Car car={carData} post={postData} />
-          </div>
-        );
-      })}
-    </CarGrid>
-  );
+  return <CarGrid results={results}></CarGrid>;
 }

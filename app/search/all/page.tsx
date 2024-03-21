@@ -10,17 +10,5 @@ export default async function All() {
     .from(posts)
     .innerJoin(cars, eq(cars.id, posts.carId));
 
-  return (
-    <CarGrid>
-      {results.map((carPostData) => {
-        const { posts: postData, cars: carData } = carPostData;
-
-        return (
-          <div className="m-4">
-            <Car car={carData} post={postData} />
-          </div>
-        );
-      })}
-    </CarGrid>
-  );
+  return <CarGrid results={results} />;
 }
