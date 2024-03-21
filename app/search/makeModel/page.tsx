@@ -1,5 +1,6 @@
 import { db } from "@/lib/database";
 import { Car } from "@/components/cars/Car";
+import { CarGrid } from "@/components/cars/CarGrid";
 import { eq, and } from "drizzle-orm";
 import { posts, cars } from "@/lib/schema";
 export default async function MakeSearch({
@@ -13,8 +14,9 @@ export default async function MakeSearch({
     .from(posts)
     .innerJoin(cars, eq(cars.id, posts.carId))
     .where(and(eq(cars.make, make), eq(cars.model, model)));
+
   return (
-    <div className="flex items-center flex-col justfy-center">
+    <CarGrid>
       {results.map((carPostData) => {
         const { posts: postData, cars: carData } = carPostData;
 
@@ -24,6 +26,6 @@ export default async function MakeSearch({
           </div>
         );
       })}
-    </div>
+    </CarGrid>
   );
 }

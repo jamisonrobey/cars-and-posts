@@ -1,4 +1,5 @@
 import { Car } from "@/components/cars/Car";
+import { CarGrid } from "@/components/cars/CarGrid";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/database";
 import { cars, posts } from "@/lib/schema";
@@ -10,7 +11,7 @@ export default async function All() {
     .innerJoin(cars, eq(cars.id, posts.carId));
 
   return (
-    <div className="flex items-center flex-col justfy-center">
+    <CarGrid>
       {results.map((carPostData) => {
         const { posts: postData, cars: carData } = carPostData;
 
@@ -20,6 +21,6 @@ export default async function All() {
           </div>
         );
       })}
-    </div>
+    </CarGrid>
   );
 }

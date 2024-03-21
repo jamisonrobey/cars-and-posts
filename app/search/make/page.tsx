@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { Car } from "@/components/cars/Car";
 import { cars } from "@/lib/schema";
 import { posts } from "@/lib/schema";
+import { CarGrid } from "@/components/cars/CarGrid";
 export default async function MakeSearch({
   searchParams,
 }: {
@@ -16,7 +17,7 @@ export default async function MakeSearch({
     .where(eq(cars.make, make));
 
   return (
-    <div className="flex items-center flex-col justfy-center">
+    <CarGrid>
       {results.map((carPostData) => {
         const { posts: postData, cars: carData } = carPostData;
 
@@ -26,6 +27,6 @@ export default async function MakeSearch({
           </div>
         );
       })}
-    </div>
+    </CarGrid>
   );
 }
