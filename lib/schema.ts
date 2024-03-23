@@ -1,52 +1,63 @@
 import {
-  mysqlTable,
-  boolean,
+  pgTable,
+  pgEnum,
   varchar,
-  int,
-  mysqlEnum,
+  integer,
   text,
+  boolean,
   date,
   decimal,
-} from "drizzle-orm/mysql-core";
+  primaryKey,
+} from "drizzle-orm/pg-core";
 
-export const cars = mysqlTable("cars", {
-  id: int("car_id").primaryKey().autoincrement().notNull(),
-  model: varchar("model", { length: 50 }).notNull(),
-  make: varchar("make", { length: 50 }).notNull(),
-  year: int("year").notNull(),
-  bodyType: mysqlEnum("body_type", [
-    "SUV",
-    "Sedan",
-    "Hatchback",
-    "Coupe",
-    "Convertible",
-    "Wagon",
-    "Van",
-  ]).notNull(),
-  engineConfig: mysqlEnum("engine_config", [
-    "I4",
-    "I6",
-    "V6",
-    "V8",
-    "V10",
-    "V12",
-  ]).notNull(),
-  transmission: varchar("transmission", { length: 50 }).notNull(),
-  colour: varchar("colour", { length: 50 }).notNull(),
-  trim: varchar("trim", { length: 50 }),
-  interiorColour: varchar("interior_colour", { length: 50 }),
+export const bodyTypeEnum = pgEnum("body_type_enum", [
+  "SUV",
+  "Sedan",
+  "Hatchback",
+  "Coupe",
+  "Convertible",
+  "Wagon",
+  "Van",
+  "Spyder",
+  "Roadster",
+]);
+export const engineConfigEnum = pgEnum("engine_config_enum", [
+  "I4",
+  "I6",
+  "V6",
+  "V8",
+  "V10",
+  "V12",
+  "Electric",
+  "W12",
+]);
+export const transmissionEnum = pgEnum("transmission_enum", [
+  "Automatic",
+  "Manual",
+  "CVT",
+]);
+
+export const cars = pgTable("cars", {
+  id: integer("id").primaryKey(),
+  model: text("model").notNull(),
+  make: text("make").notNull(),
+  year: integer("year").notNull(),
+  bodyType: bodyTypeEnum("body_type").notNull(),
+  engineConfig: engineConfigEnum("engine_config").notNull(),
+  transmission: transmissionEnum("transmission").notNull(),
+  imagePath: text("image_path").notNull(),
+  trim: text("trim"),
 });
 
-export const posts = mysqlTable("posts", {
-  id: int("post_id").primaryKey().autoincrement().notNull(),
-  carId: int("car_id").references(() => cars.id),
-  title: varchar("title", { length: 50 }).notNull(),
+export const posts = pgTable("posts", {
+  postId: integer("post_id").primaryKey(),
+  carId: integer("car_id").references(() => cars.id),
+  title: text("title").notNull(),
   description: text("description").notNull(),
-  vin: varchar("vin", { length: 50 }).notNull(),
+  vin: text("vin").notNull(),
   uploadDate: date("upload_date").notNull(),
-  sold: boolean("is_sold").default(false),
-  imagePath: varchar("image_path", { length: 50 }).notNull(),
-  mileage: int("mileage").notNull(),
+  isSold: boolean("is_sold").default(false),
+  mileage: integer("mileage").notNull(),
   price: decimal("price", { precision: 10, scale: 2 }).notNull(),
-  views: int("views").default(0),
+  views: integer("views").default(0),
 });

@@ -1,6 +1,5 @@
 import { db } from "@/lib/database";
 import { eq } from "drizzle-orm";
-import { Car } from "@/components/cars/Car";
 import { cars } from "@/lib/schema";
 import { posts } from "@/lib/schema";
 import { CarGrid } from "@/components/cars/CarGrid";
