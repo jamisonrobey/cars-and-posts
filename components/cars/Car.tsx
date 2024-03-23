@@ -14,7 +14,7 @@ type CarProps = {
 export const Car: React.FC<CarProps> = async ({ car, post }) => {
   return (
     <div
-      className={`${sans.className} rounded-lg shadow-xl hover:scale-105 duration-150 flex items-center flex-col justify-center`}
+      className={`${sans.className} rounded-lg shadow-xl hover:scale-105 duration-150 flex h-96 w-9/10 items-center flex-col justify-center`}
     >
       <div className="select-none max-w-2xl overflow-hidden">
         <CustomImage src={car.imagePath} alt="thumbnail" />

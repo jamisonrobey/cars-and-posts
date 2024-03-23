@@ -3,7 +3,7 @@ import { CarGrid } from "@/components/cars/CarGrid";
 import { eq } from "drizzle-orm";
 import { posts, cars } from "@/lib/schema";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 6;
 
 export default async function MakeSearch({
   searchParams,

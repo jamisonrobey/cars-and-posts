@@ -1,5 +1,6 @@
+import { sans } from "@/lib/fonts";
 import Link from "next/link";
-
+import { CaretLeftIcon, CaretRightIcon } from "@radix-ui/react-icons";
 interface PaginationControlsProps {
   currentPage: number;
   totalPages: number;
@@ -19,7 +20,7 @@ export const PaginationControls: React.FC<PaginationControlsProps> = ({
   };
 
   return (
-    <div className="flex justify-center mt-8">
+    <div className="flex justify-around mt-8 w-full items-center">
       {currentPage > 1 && (
         <Link
           href={`${basePath}${buildSearchParamsString({
@@ -27,12 +28,16 @@ export const PaginationControls: React.FC<PaginationControlsProps> = ({
             page: (currentPage - 1).toString(),
           })}`}
         >
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md mr-4">
-            Previous
+          <button
+            className={`${sans.className} rounded-xl shadow-md text-2xl  bg-accent hover:scale-105 text-white duration-75`}
+          >
+            <CaretLeftIcon className="w-20 h-20" />
           </button>
         </Link>
       )}
-
+      <div className={`${sans.className} text-gray-500 text-lg`}>
+        Page {currentPage} of {totalPages}
+      </div>
       {currentPage < totalPages && (
         <Link
           href={`${basePath}${buildSearchParamsString({
@@ -40,8 +45,10 @@ export const PaginationControls: React.FC<PaginationControlsProps> = ({
             page: (currentPage + 1).toString(),
           })}`}
         >
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md">
-            Next
+          <button
+            className={`${sans.className} rounded-xl shadow-md text-2xl  bg-accent hover:scale-105 text-white duration-75`}
+          >
+            <CaretRightIcon className="w-20 h-20" />
           </button>
         </Link>
       )}

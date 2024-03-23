@@ -19,15 +19,17 @@ export const CarGrid: React.FC<CarGridProps> = ({
   searchParams = {},
 }) => {
   return (
-    <div className="flex items-center flex-col">
-      {results.map((carPostData) => {
-        const { posts: postData, cars: carData } = carPostData;
-        return (
-          <div className="m-4" key={postData.id}>
-            <Car car={carData} post={postData} />
-          </div>
-        );
-      })}
+    <div className="flex items-center flex-col bg-white">
+      <div className="grid grid-cols-3 w-3/4">
+        {results.map((carPostData) => {
+          const { posts: postData, cars: carData } = carPostData;
+          return (
+            <div className="m-4">
+              <Car key={carData.id} car={carData} post={postData} />
+            </div>
+          );
+        })}
+      </div>
 
       <PaginationControls
         currentPage={currentPage}

@@ -1,10 +1,9 @@
-import { Car } from "@/components/cars/Car";
 import { CarGrid } from "@/components/cars/CarGrid";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/database";
 import { cars, posts } from "@/lib/schema";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 6;
 
 export default async function All({
   searchParams,
