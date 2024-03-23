@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="flex flex-col ">
         <p className={`${boldSans.className}`}>Contact</p>
         <Link
-          href="/"
+          href="https://github.com/jamisonrobey/cars-and-posts/issues"
           className={`${sans.className} text-gray-500 hover:underline mt-4`}
         >
           Report an issue
@@ -16,25 +16,25 @@ export const Footer = () => {
       <div className="flex flex-col ">
         <p className={`${boldSans.className}`}>Body</p>
         <Link
-          href="/"
+          href="/search/body?body=Sedan"
           className={`${sans.className} text-gray-500 hover:underline mt-4`}
         >
           Sedan
         </Link>
         <Link
-          href="/"
+          href="/search/body?body=Hatchback"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Hatch
         </Link>
         <Link
-          href="/"
+          href="/search/body?body=Van"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Van
         </Link>
         <Link
-          href="/"
+          href="/search/body?body=Ute"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Ute
@@ -43,25 +43,25 @@ export const Footer = () => {
       <div className="flex flex-col ">
         <p className={`${boldSans.className}`}>Make</p>
         <Link
-          href="/"
+          href="/search/make?make=Toyota"
           className={`${sans.className} text-gray-500 hover:underline mt-4`}
         >
           Toyota
         </Link>
         <Link
-          href="/"
+          href="/search/make?make=Kia"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Kia
         </Link>
         <Link
-          href="/"
+          href="/search/make?make=Ford"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Ford
         </Link>
         <Link
-          href="/"
+          href="/search/make?make=Volkswagen"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Volkswagen
@@ -71,7 +71,7 @@ export const Footer = () => {
       <div className="flex flex-col ">
         <p className={`${boldSans.className}`}>Jamison Robey</p>
         <Link
-          href="/"
+          href="https://github.com/jamisonrobey/cars-and-posts"
           className={`${sans.className} text-gray-500 hover:underline mt-4`}
         >
           Source code
@@ -89,13 +89,13 @@ export const Footer = () => {
           Blog
         </Link>
         <Link
-          href="/"
+          href="https://github.com/jamisonrobey"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Github
         </Link>
         <Link
-          href="/"
+          href="https://www.linkedin.com/in/jamison-robey-3620722a9/"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           LinkedIn
