@@ -5,7 +5,12 @@ import {
 } from "@radix-ui/react-icons";
 import { sans } from "@/lib/fonts";
 import * as Select from "@radix-ui/react-select";
-import { SelectItem } from "@/types/interfaces";
+
+interface SelectItem {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
 
 interface SelectDropdownProps {
   items: SelectItem[];
@@ -14,6 +19,8 @@ interface SelectDropdownProps {
   placeholder: string;
   disabled?: boolean;
   label: string;
+  allLabel?: string;
+  allCount?: number;
 }
 
 export const SelectDropdown: React.FC<SelectDropdownProps> = ({
@@ -23,6 +30,8 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
   placeholder,
   disabled = false,
   label,
+  allLabel = "All",
+  allCount = 0,
 }) => {
   return (
     <Select.Root
@@ -55,17 +64,18 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
               <Select.Label className="relative flex items-center h-6 py-0 text-gray-500 pl-8 pr-6 select-none">
                 {label}
               </Select.Label>
+              <Select.Separator className="bg-accent min-h-px my-1" />
               <Select.Item
                 key="all"
-                value={"all"}
+                value="all"
                 className="relative flex items-center h-6 py-0 pl-8 pr-6 text-sm rounded-sm hover:bg-accent hover:text-white focus:outline-none select-none"
               >
-                <Select.ItemText>{`All \t(${items.length})`}</Select.ItemText>
-                <Select.ItemIndicator>
-                  <CheckIcon></CheckIcon>
+                <Select.ItemText>{`${allLabel} (${allCount})`}</Select.ItemText>
+                <Select.ItemIndicator className="absolute left-0 inline-flex items-center justify-center w-6">
+                  <CheckIcon />
                 </Select.ItemIndicator>
               </Select.Item>
-              <Select.Separator className="bg-greyLight min-h-0.5" />
+              <Select.Separator className="bg-accent min-h-px mt-1 mb-1" />
               {items.map((item) => (
                 <Select.Item
                   key={item.value}

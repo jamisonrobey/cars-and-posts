@@ -12,9 +12,10 @@
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-select": "^2.0.0",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.30.1",
-    "mysql2": "^3.9.2",
+    "drizzle-orm": "^0.30.4",
     "next": "14.1.3",
+    "pg": "^8.11.3",
+    "postgres": "^3.4.4",
     "react": "^18",
     "react-dom": "^18"
   },
