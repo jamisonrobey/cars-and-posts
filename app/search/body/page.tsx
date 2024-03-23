@@ -3,7 +3,7 @@ import { CarGrid } from "@/components/cars/CarGrid";
 import { eq, and } from "drizzle-orm";
 import { posts, cars } from "@/lib/schema";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 6;
 
 export default async function BodySearch({
   searchParams,
@@ -18,7 +18,8 @@ export default async function BodySearch({
     .select()
     .from(posts)
     .innerJoin(cars, eq(cars.id, posts.carId))
-    .where(eq(cars.make, body))
+    //@ts-ignore
+    .where(eq(cars.bodyType, body))
     .offset(offset)
     .limit(ITEMS_PER_PAGE);
 
@@ -28,7 +29,8 @@ export default async function BodySearch({
         .select()
         .from(posts)
         .innerJoin(cars, eq(cars.id, posts.carId))
-        .where(eq(cars.make, body))
+        //@ts-ignore
+        .where(eq(cars.bodyType, body))
     ).length / ITEMS_PER_PAGE
   );
 
@@ -37,7 +39,7 @@ export default async function BodySearch({
       results={results}
       currentPage={page}
       totalPages={totalPages}
-      basePath="/search/model"
+      basePath="/search/body"
       searchParams={{ body }}
     />
   );
