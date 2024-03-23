@@ -5,6 +5,8 @@ import { eq } from "drizzle-orm";
 import { cars, posts } from "@/lib/schema";
 import { SelectParent } from "./select/SelectParent";
 import { sans } from "@/lib/fonts";
+import { SedanIcon, UteIcon, VanIcon, SuvIcon } from "./Icons";
+import Link from "next/link";
 
 const getModels = async (): Promise<MakesModels> => {
   const results = await db
@@ -39,7 +41,20 @@ export const Search = async () => {
       <div className="flex items-center justify-around border-b-2 border-greyLight">
         <SelectParent makesModels={makesAndModels} />
       </div>
-      <div className="flex items-center justify-around"></div>
+      <div className="flex items-center justify-around">
+        <Link href="">
+          <SedanIcon />
+        </Link>
+        <Link href="">
+          <UteIcon />
+        </Link>
+        <Link href="">
+          <VanIcon />
+        </Link>
+        <Link href="">
+          <SuvIcon />
+        </Link>
+      </div>
     </div>
   );
 };

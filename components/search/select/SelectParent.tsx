@@ -95,7 +95,7 @@ export const SelectParent: React.FC<SelectParentProps> = ({ makesModels }) => {
         allCount={makesModels[make]?.count || 0}
       />
       <button
-        className={`${boldSans.className} rounded-xl shadow-md border-accent bg-accent hover:scale-105 text-white duration-75 border-4 w-1/12`}
+        className={`${boldSans.className} rounded-xl text-xl shadow-md border-accent bg-accent hover:scale-105 text-white duration-75 border-4 w-1/12`}
       >
         <Link href={href}>
           {totalPosts > 0 ? `Find (${totalPosts})` : "Find"}

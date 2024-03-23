@@ -42,7 +42,7 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
       <Select.Trigger
         className={`${
           sans.className
-        } inline-flex items-center justify-center px-4 py-2 text-sm w-1/4 ${
+        } inline-flex items-center justify-center px-4 py-2 text-lg w-1/4 ${
           disabled
             ? "bg-gray-100 text-gray-400"
             : "hover:text-white duration-75 hover:bg-accent bg-white"
@@ -80,7 +80,7 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
                 <Select.Item
                   key={item.value}
                   value={item.value}
-                  className="relative flex items-center h-6 py-0 pl-8 pr-6 text-sm rounded-sm hover:bg-accent hover:text-white focus:outline-none select-none"
+                  className="relative flex items-center h-6 py-0 pl-8 pr-6 text-base rounded-sm hover:bg-accent hover:text-white focus:outline-none select-none"
                   disabled={item.disabled}
                 >
                   <Select.ItemText>{item.label}</Select.ItemText>
