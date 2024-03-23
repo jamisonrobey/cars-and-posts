@@ -42,16 +42,16 @@ export const Search = async () => {
         <SelectParent makesModels={makesAndModels} />
       </div>
       <div className="flex items-center justify-around">
-        <Link href="">
+        <Link href="/search/body?body=Sedan">
           <SedanIcon />
         </Link>
-        <Link href="">
+        <Link href="/search/body?body=Ute">
           <UteIcon />
         </Link>
-        <Link href="">
+        <Link href="/search/body?body=Van">
           <VanIcon />
         </Link>
-        <Link href="">
+        <Link href="/search/body?body=SUV">
           <SuvIcon />
         </Link>
       </div>
