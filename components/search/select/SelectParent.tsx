@@ -1,61 +1,73 @@
 "use client";
-import { MakesAndModels, SelectItem } from "@/types/interfaces";
+import { MakesModels } from "@/types/interfaces";
 import { useState, useEffect } from "react";
-import { SelectDropdown } from "./SelectDropdown";
 import { boldSans } from "@/lib/fonts";
 import Link from "next/link";
+import { SelectDropdown } from "./SelectDropdown";
+
 interface SelectParentProps {
-  makesAndModels: MakesAndModels;
+  makesModels: MakesModels;
 }
 
-export const SelectParent: React.FC<SelectParentProps> = ({
-  makesAndModels,
-}) => {
+export const SelectParent: React.FC<SelectParentProps> = ({ makesModels }) => {
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
-  const [models, setModels] = useState<string[]>([]);
-  const [href, setHref] = useState("");
+  const [models, setModels] = useState<{ model: string; count: number }[]>([]);
+  const [href, setHref] = useState("/search/all/");
+  const [totalPosts, setTotalPosts] = useState(0);
 
   useEffect(() => {
     if (make === "" || make === "all") {
       setModels([]);
+      setModel("");
       setHref("/search/all/");
+      setTotalPosts(
+        Object.values(makesModels).reduce((sum, { count }) => sum + count, 0)
+      );
     } else {
-      const selectedMake = makesAndModels[make];
+      const selectedMake = makesModels[make];
       if (selectedMake) {
-        setModels(selectedMake.models);
-        if (model === "" || model === "all") {
-          setHref(`/search/make?make=${make}`);
-        } else {
-          setHref(`/search/makeModel?make=${make}&model=${model}`);
-        }
+        const modelEntries = Object.entries(selectedMake.models);
+        setModels(modelEntries.map(([model, count]) => ({ model, count })));
+        setHref(`/search/make?make=${make}`);
+        setTotalPosts(selectedMake.count);
       } else {
         setModels([]);
         setHref("/search/all/");
+        setTotalPosts(0);
       }
     }
-  }, [make, model, makesAndModels]);
+  }, [make, makesModels]);
+
+  useEffect(() => {
+    if (model === "" || model === "all") {
+      setHref(`/search/make?make=${make}`);
+      setTotalPosts(makesModels[make]?.count || 0);
+    } else {
+      setHref(`/search/makeModel?make=${make}&model=${model}`);
+      setTotalPosts(makesModels[make]?.models[model] || 0);
+    }
+  }, [model, make, makesModels]);
 
   const handleMakeChange = (value: string) => {
     setMake(value);
+    setModel("");
   };
 
   const handleModelChange = (value: string) => {
     setModel(value);
   };
 
-  const makeItems: SelectItem[] = Object.entries(makesAndModels).map(
-    ([make, { count }]) => ({
-      value: make,
-      label: `${
-        make.charAt(0).toUpperCase() + make.slice(1).replace(/_/g, " ")
-      } (${count})`,
-    })
-  );
+  const makeItems = Object.entries(makesModels).map(([make, { count }]) => ({
+    value: make,
+    label: `${
+      make.charAt(0).toUpperCase() + make.slice(1).replace(/_/g, " ")
+    } (${count})`,
+  }));
 
-  const modelItems: SelectItem[] = models.map((model) => ({
+  const modelItems = models.map(({ model, count }) => ({
     value: model,
-    label: model,
+    label: `${model} (${count})`,
   }));
 
   return (
@@ -64,22 +76,30 @@ export const SelectParent: React.FC<SelectParentProps> = ({
         items={makeItems}
         value={make}
         onValueChange={handleMakeChange}
+        placeholder="Select Make"
         label="Makes"
-        placeholder="Make..."
+        allLabel="All makes"
+        allCount={Object.values(makesModels).reduce(
+          (sum, { count }) => sum + count,
+          0
+        )}
       />
       <SelectDropdown
         items={modelItems}
         value={model}
         onValueChange={handleModelChange}
+        placeholder="Select Model"
         label="Models"
-        placeholder="Model..."
         disabled={models.length === 0}
+        allLabel="All models"
+        allCount={makesModels[make]?.count || 0}
       />
-
       <button
         className={`${boldSans.className} rounded-xl shadow-md border-accent bg-accent hover:scale-105 text-white duration-75 border-4 w-1/12`}
       >
-        {model ? <Link href={href}>Find</Link> : <Link href={href}>Find</Link>}
+        <Link href={href}>
+          {totalPosts > 0 ? `Find (${totalPosts})` : "Find"}
+        </Link>
       </button>
     </>
   );

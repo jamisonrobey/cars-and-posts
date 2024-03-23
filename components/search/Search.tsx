@@ -1,12 +1,13 @@
 import React from "react";
-import { MakesAndModels } from "@/types/interfaces";
+import { MakesModels } from "@/types/interfaces";
 import { db } from "@/lib/database";
 import { eq } from "drizzle-orm";
 import { cars, posts } from "@/lib/schema";
 import { SelectParent } from "./select/SelectParent";
 import { sans } from "@/lib/fonts";
-export const getModels = async () => {
-  const makesAndModels = await db
+
+const getModels = async (): Promise<MakesModels> => {
+  const results = await db
     .select({
       make: cars.make,
       model: cars.model,
@@ -14,26 +15,19 @@ export const getModels = async () => {
     .from(posts)
     .innerJoin(cars, eq(cars.id, posts.carId));
 
-  const structuredMakesAndModels = makesAndModels.reduce<MakesAndModels>(
-    (acc, car) => {
-      const { make, model } = car;
-      const lowerCaseMake = make.toLowerCase().replace(/-/g, "_");
+  const makesModels: MakesModels = results.reduce((acc, { make, model }) => {
+    if (!acc[make]) {
+      acc[make] = { models: {}, count: 0 };
+    }
+    if (!acc[make].models[model]) {
+      acc[make].models[model] = 0;
+    }
+    acc[make].models[model]++;
+    acc[make].count++;
+    return acc;
+  }, {} as MakesModels);
 
-      if (!acc[lowerCaseMake]) {
-        acc[lowerCaseMake] = {
-          models: [],
-          count: 0,
-        };
-      }
-
-      acc[lowerCaseMake].models.push(model);
-      acc[lowerCaseMake].count++;
-
-      return acc;
-    },
-    {}
-  );
-  return structuredMakesAndModels;
+  return makesModels;
 };
 
 export const Search = async () => {
@@ -43,7 +37,7 @@ export const Search = async () => {
       className={`${sans.className} w-5/6 h-72 grid grid-cols-1 bg-white shadow-2xl rounded-3xl`}
     >
       <div className="flex items-center justify-around border-b-2 border-greyLight">
-        <SelectParent makesAndModels={makesAndModels} />
+        <SelectParent makesModels={makesAndModels} />
       </div>
       <div className="flex items-center justify-around"></div>
     </div>

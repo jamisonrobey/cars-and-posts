@@ -1,12 +1,8 @@
-export interface MakesAndModels {
-  [key: string]: {
-    models: string[];
+export interface MakesModels {
+  [make: string]: {
+    models: {
+      [model: string]: number;
+    };
     count: number;
   };
-}
-
-export interface SelectItem {
-  value: string;
-  label: string;
-  disabled?: boolean;
 }
