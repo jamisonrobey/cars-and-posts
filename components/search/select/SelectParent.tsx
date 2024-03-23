@@ -29,25 +29,21 @@ export const SelectParent: React.FC<SelectParentProps> = ({ makesModels }) => {
       if (selectedMake) {
         const modelEntries = Object.entries(selectedMake.models);
         setModels(modelEntries.map(([model, count]) => ({ model, count })));
-        setHref(`/search/make?make=${make}`);
-        setTotalPosts(selectedMake.count);
+
+        if (model === "" || model === "all") {
+          setHref(`/search/make?make=${make}`);
+          setTotalPosts(selectedMake.count);
+        } else {
+          setHref(`/search/makeModel?make=${make}&model=${model}`);
+          setTotalPosts(selectedMake.models[model] || 0);
+        }
       } else {
         setModels([]);
         setHref("/search/all/");
         setTotalPosts(0);
       }
     }
-  }, [make, makesModels]);
-
-  useEffect(() => {
-    if (model === "" || model === "all") {
-      setHref(`/search/make?make=${make}`);
-      setTotalPosts(makesModels[make]?.count || 0);
-    } else {
-      setHref(`/search/makeModel?make=${make}&model=${model}`);
-      setTotalPosts(makesModels[make]?.models[model] || 0);
-    }
-  }, [model, make, makesModels]);
+  }, [make, model, makesModels]);
 
   const handleMakeChange = (value: string) => {
     setMake(value);
