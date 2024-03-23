@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { sans } from "@/lib/fonts";
 import { Header } from "@/components/shared/Header";
 import "./globals.css";
+import { Footer } from "@/components/shared/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body className={sans.className}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
