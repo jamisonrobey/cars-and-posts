@@ -9,6 +9,7 @@ interface CustomImageProps {
 export const CustomImage: React.FC<CustomImageProps> = ({ src, alt }) => {
   return (
     <Image
+      placeholder="empty"
       alt={alt}
       width={0}
       height={0}
