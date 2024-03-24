@@ -24,7 +24,7 @@ export const Car: React.FC<CarProps> = async ({ car, post }) => {
           alt="thumbnail"
         />
       </div>
-      <div className="items-center justify-center max-w-2xl grid-cols-2 grid p-4">
+      <div className="items-center grid-cols-2 grid p-4">
         <Link
           href="/"
           className={`${boldSans.className} hover:underline text-2xl`}
