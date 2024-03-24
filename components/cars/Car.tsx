@@ -7,11 +7,12 @@ import { InferSelectModel } from "drizzle-orm";
 type Cars = InferSelectModel<typeof cars>;
 type Posts = InferSelectModel<typeof posts>;
 type CarProps = {
+  id: number;
   post: Posts;
   car: Cars;
 };
 
-export const Car: React.FC<CarProps> = async ({ car, post }) => {
+export const Car: React.FC<CarProps> = async ({ id, car, post }) => {
   return (
     <div
       className={`${sans.className} rounded-lg shadow-xl hover:scale-105 duration-150 flex h-96 w-9/10 items-center flex-col justify-center`}
@@ -26,7 +27,7 @@ export const Car: React.FC<CarProps> = async ({ car, post }) => {
       </div>
       <div className="items-center grid-cols-2 grid p-4">
         <Link
-          href="/"
+          href={`/search/id?id=${id}`}
           className={`${boldSans.className} hover:underline text-2xl`}
         >
           {post.title}

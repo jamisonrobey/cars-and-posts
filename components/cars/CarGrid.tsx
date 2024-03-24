@@ -25,7 +25,12 @@ export const CarGrid: React.FC<CarGridProps> = ({
           const { posts: postData, cars: carData } = carPostData;
           return (
             <div className="m-4">
-              <Car key={carData.id} car={carData} post={postData} />
+              <Car
+                id={postData.postId}
+                key={carData.id}
+                car={carData}
+                post={postData}
+              />
             </div>
           );
         })}
