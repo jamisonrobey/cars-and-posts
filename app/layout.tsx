@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { sans } from "@/lib/fonts";
 import { Header } from "@/components/shared/Header";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Footer } from "@/components/shared/Footer";
 
@@ -21,7 +22,10 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+
+        {/* vercel */}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
