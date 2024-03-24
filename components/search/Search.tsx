@@ -4,7 +4,7 @@ import { db } from "@/lib/database";
 import { eq } from "drizzle-orm";
 import { cars, posts } from "@/lib/schema";
 import { SelectParent } from "./select/SelectParent";
-import { sans } from "@/lib/fonts";
+import { boldSans, sans } from "@/lib/fonts";
 import { SedanIcon, UteIcon, VanIcon, SuvIcon } from "./Icons";
 import Link from "next/link";
 
@@ -36,11 +36,14 @@ export const Search = async () => {
   const makesAndModels = await getModels();
   return (
     <div
-      className={`${sans.className} w-5/6 h-72 grid grid-cols-1 bg-white shadow-2xl rounded-3xl`}
+      className={`${sans.className} w-5/6 h-96 sm:h-72 grid grid-cols-1 bg-white shadow-2xl rounded-3xl`}
     >
-      <div className="flex items-center justify-around border-b-2 border-greyLight">
+      <div className="flex flex-col sm:flex-row items-center justify-around border-b-2 border-greyLight">
         <SelectParent makesModels={makesAndModels} />
       </div>
+      <p className={`${boldSans.className} flex items-center justify-center`}>
+        Or Search by Body Type
+      </p>
       <div className="flex items-center justify-around">
         <Link href="/search/body?body=Sedan">
           <SedanIcon />

@@ -11,16 +11,8 @@ export default function Home() {
             alt="Multiple cars driving on highway."
           />
         </div>
-        <div className="hidden sm:flex items-center justify-center mt-[-150px]">
+        <div className="flex items-center justify-center mt-[-150px]">
           <Search />
-        </div>
-        <div className="sm:hidden flex items-start justify-center mt-[-100px]">
-          <Link
-            href="/"
-            className="py-4 px-10 bg-accent rounded-full text-white"
-          >
-            Search
-          </Link>
         </div>
       </div>
     </div>

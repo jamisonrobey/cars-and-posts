@@ -1,7 +1,7 @@
 export const UteIcon = () => {
   return (
     <svg
-      className="w-24 stroke-black fill-white stroke-2"
+      className="w-16 m-2 sm:m-0 sm:w-24 stroke-black fill-white stroke-2"
       fillRule="evenodd"
       clipRule="evenodd"
       viewBox="0 -32.56 122.88 122.88"
@@ -22,7 +22,7 @@ export const UteIcon = () => {
 export const VanIcon = () => {
   return (
     <svg
-      className="w-24 stroke-black fill-white stroke-2"
+      className="w-16 m-2 sm:m-0 sm:w-24 stroke-black fill-white stroke-2"
       transform="scale(-1,1)"
       fillRule="evenodd"
       clipRule="evenodd"
@@ -44,7 +44,7 @@ export const VanIcon = () => {
 export const SportsCarIcon = () => {
   return (
     <svg
-      className="w-24 fill-white stroke-black"
+      className="w-16 m-2 sm:m-0 sm:w-24 stroke-black fill-white stroke-2"
       strokeWidth={8}
       transform="scale(-1,1)"
       version="1.1"
@@ -94,7 +94,7 @@ export const SportsCarIcon = () => {
 export const SedanIcon = () => {
   return (
     <svg
-      className="w-24 stroke-black fill-white"
+      className="w-16 m-2 sm:m-0 sm:w-24 stroke-black fill-white"
       strokeWidth={8}
       version="1.1"
       id="\_x32\_"
@@ -117,7 +117,7 @@ export const SedanIcon = () => {
 export const SuvIcon = () => {
   return (
     <svg
-      className="w-24 stroke-black fill-white"
+      className="w-16 m-2 sm:m-0 sm:w-24 stroke-black fill-white"
       strokeWidth={4}
       version="1.1"
       id="Layer_1"

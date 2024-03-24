@@ -42,7 +42,7 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
       <Select.Trigger
         className={`${
           sans.className
-        } inline-flex items-center justify-center px-4 py-2 text-lg w-1/4 ${
+        } inline-flex items-center justify-center px-4 py-2 w-3/4 m-4 sm:m-0 text-lg sm:w-1/4 ${
           disabled
             ? "bg-gray-100 text-gray-400"
             : "hover:text-white duration-75 hover:bg-accent bg-white"
