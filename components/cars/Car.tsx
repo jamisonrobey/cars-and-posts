@@ -17,7 +17,12 @@ export const Car: React.FC<CarProps> = async ({ car, post }) => {
       className={`${sans.className} rounded-lg shadow-xl hover:scale-105 duration-150 flex h-96 w-9/10 items-center flex-col justify-center`}
     >
       <div className="select-none max-w-2xl overflow-hidden">
-        <CustomImage src={car.imagePath} alt="thumbnail" />
+        <CustomImage
+          width={672}
+          height={384}
+          src={car.imagePath}
+          alt="thumbnail"
+        />
       </div>
       <div className="justify-items-center  max-w-2xl grid-cols-2 grid p-4">
         <Link
