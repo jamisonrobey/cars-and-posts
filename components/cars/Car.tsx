@@ -24,7 +24,7 @@ export const Car: React.FC<CarProps> = async ({ car, post }) => {
           alt="thumbnail"
         />
       </div>
-      <div className="justify-items-center  max-w-2xl grid-cols-2 grid p-4">
+      <div className="items-center justify-center max-w-2xl grid-cols-2 grid p-4">
         <Link
           href="/"
           className={`${boldSans.className} hover:underline text-2xl`}
@@ -32,7 +32,7 @@ export const Car: React.FC<CarProps> = async ({ car, post }) => {
           {post.title}
         </Link>
         <p className="justify-self-end text-2xl">${post.price}</p>
-        <div className="mt-4 text-gray-500 grid grid-cols-2 w-full">
+        <div className="mt-4 text-gray-500 grid col-span-2 sm:col-span-1 grid-cols-2 ">
           <p>- {car.bodyType}</p>
           <p>- {car.engineConfig}</p>
           <p>- {car.transmission}</p>
