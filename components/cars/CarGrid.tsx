@@ -20,7 +20,7 @@ export const CarGrid: React.FC<CarGridProps> = ({
 }) => {
   return (
     <div className="flex items-center flex-col bg-white">
-      <div className="grid grid-cols-3 w-3/4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 w-3/4">
         {results.map((carPostData) => {
           const { posts: postData, cars: carData } = carPostData;
           return (
