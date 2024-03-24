@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { sans } from "@/lib/fonts";
 import { Header } from "@/components/shared/Header";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Footer } from "@/components/shared/Footer";
