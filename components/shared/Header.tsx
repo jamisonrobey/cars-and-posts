@@ -21,7 +21,7 @@ export const Header = () => {
         </Link>
         <Link
           className="hover:border-b-4 hover:border-accent duration-75"
-          href={"/"}
+          href={"https://jamisonrobey.github.io/2024/03/24/CarMart.html"}
         >
           About
         </Link>

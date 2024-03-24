@@ -77,13 +77,13 @@ export const Footer = () => {
           Source code
         </Link>
         <Link
-          href="/"
+          href="https://jamisonrobey.github.io/2024/03/24/CarMart.html"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Blog post
         </Link>
         <Link
-          href="/"
+          href="https://jamisonrobey.github.io/"
           className={`${sans.className} text-gray-500 hover:underline mt-1`}
         >
           Blog
