@@ -7,8 +7,8 @@ export default function Home() {
       <div className="relative">
         <div className="select-none max-h-48 sm:max-h-96 overflow-hidden">
           <CustomImage
-            height={600}
-            width={600}
+            height={800}
+            width={1200}
             src="/splash.jpg"
             alt="Multiple cars driving on highway."
           />
